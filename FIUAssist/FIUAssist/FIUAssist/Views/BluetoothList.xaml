@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModels="clr-namespace:FIUAssist.ViewModels"
+             Title="Devices"
+             Icon="bt_icon.png"
+             BackgroundColor="#A7AFB2"
+             x:Class="FIUAssist.Views.BluetoothList">
+
+    <ContentPage.BindingContext>
+        <ViewModels:DeviceViewModel>
+        </ViewModels:DeviceViewModel>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ListView x:Name="DeviceList"
+                  Grid.Row="0"
+                  SeparatorColor="Black"
+                  RowHeight="50"
+                  BackgroundColor="#A7AFB2"
+                  ItemTapped="ListItem_ItemTapped">
+            <ListView.Header>
+                <StackLayout>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="BluetoothList" 
+                               Grid.Row="0" Grid.Column="0" 
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               TextColor="Black"/>
+                        <!--<Button Text="Status" Grid.Column="1"
+                                x:Name="btnStatus"
+                                HorizontalOptions="Center" 
+                                VerticalOptions="Center"
+                                TextColor="Blue"
+                                Clicked="BtnStatus_Clicked"/>-->
+                        <Button Text="Devices"
+                                Grid.Column="1"
+                                x:Name="btnPairedDevices"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                TextColor="Blue"
+                                Clicked="BtnPairedDevices_Clicked" />
+                        <!--<Button Text="Connect TicWatch"
+                                Grid.Column="1"
+                                x:Name="btnWatchConnect"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                TextColor="Blue"
+                                Clicked="BtnWatchConnect_Clicked" />-->
+                        <Button Text="Scan"
+                                x:Name="btnScan"
+                                Grid.Column="2"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                TextColor="Blue"
+                                Clicked="BtnScan_Clicked"/>
+                        <Button Text="Connect"
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                x:Name="btnConnect"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                TextColor="Blue"
+                                Clicked="BtnConnect_Clicked" />
+                        <Button Text="Disconnect"
+                                x:Name="btnDisconnect"
+                                Grid.Column="2"
+                                Grid.Row="1"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                TextColor="Blue"
+                                Clicked="BtnDisconnect_Clicked" />
+                        <!--<Button Text="Connect Known"
+                                x:Name="btnConnectKnown"
+                                Grid.Column="2"
+                                Grid.Row="1"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                TextColor="Blue"
+                                Clicked="BtnConnectKnown_Clicked" />-->
+                        <Button Text="Clear List"
+                                x:Name="btnClearList"
+                                Grid.Column="0"
+                                Grid.Row="1"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                TextColor="Red"
+                                Clicked="BtnClearList_Clicked" />
+                    </Grid>
+                </StackLayout>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Label Text="{Binding NativeDevice.Id}"/>
+                            <Label Text="{Binding NativeDevice.Name}"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+    
+    
+ 
+</ContentPage>

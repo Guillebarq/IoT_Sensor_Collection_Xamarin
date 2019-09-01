@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FIUAssist.Views.MainPage"
+             xmlns:views="clr-namespace:FIUAssist.Views"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             xmlns:cardView="clr-namespace:CardView;assembly=CardView"
+             NavigationPage.HasNavigationBar="True"
+             Title="Phone"
+             Icon="phone_icon.ico"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core">
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Log Page"
+                     Order="Primary"
+                     IconImageSource="insert_log.png"
+                     Clicked="LogPage_Clicked"
+                     Priority="1"/>
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+
+        <!--MAIN RELATIVE LAYOUT START-->
+
+        <RelativeLayout BackgroundColor="#A7AFB2">
+
+            <!--TOP PORTION START-->
+
+            <Label x:Name="fiu_assist"
+                   Text="FIU ASSIST Wound"
+                   TextColor="Black"
+                   FontFamily="Roboto"
+                   FontSize="36"
+                   FontAttributes="Bold"
+                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=40}"
+                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=20}"
+                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" />
+
+
+
+            <Label Text="Heart Rate + Step Count"
+                   TextColor="Black"
+                   FontFamily="Roboto"
+                   FontAttributes="Bold"
+                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,  Property=X,  Factor=0, Constant=20}"
+                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=main_card,Property=Y, Factor=0,Constant=110}" />
+
+
+            <cardView:CardView x:Name="main_card"
+                               Padding="20"
+                               CardViewHeightRequest="200"
+                               CardViewOutlineColor="Black"
+                               CardViewInnerFrameOutlineColorThickness="2"
+                               CardViewHasShadow="True"
+                               CardViewHorizontalOptions="Fill"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=1, Constant=120}"
+                               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
+                <cardView:CardView.CardViewContent>
+
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="ic_run.png"
+                               Grid.Row="0"
+                               Grid.Column="0"
+                               HorizontalOptions="Start" />
+                        <!--ic_run.png-->
+                        <Label Text="{Binding HeartRateNum}"
+                               Grid.Row="0"
+                               Grid.Column="1"
+                               TextColor="White"
+                               FontSize="Medium"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                        <Image Source="ic_step.png"
+                               Grid.Row="0"
+                               Grid.Column="2" />
+                        <!--ic_step.png-->
+                        <Label Text="{Binding StepCount}"
+                               Grid.Row="0"
+                               Grid.Column="3"
+                               TextColor="White"
+                               FontSize="Medium"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                        <Label Text="Device:"
+                               TextColor="White"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               Grid.Row="3"
+                               Grid.ColumnSpan="2"
+                               Grid.Column="1" />
+                        <Label Text="{Binding DeviceName}"
+                               x:Name="lblDeviceName"
+                               TextColor="White"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               Grid.Row="3"
+                               Grid.ColumnSpan="3"
+                               Grid.Column="3" />
+                        <Label Text="Status:"
+                               TextColor="White"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               Grid.Row="4"
+                               Grid.ColumnSpan="2"
+                               Grid.Column="1" />
+                        <Label Text="{Binding Status}"
+                               x:Name="lblStatus"
+                               TextColor="White"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               Grid.Row="4"
+                               Grid.ColumnSpan="3"
+                               Grid.Column="3" />
+                        <Label Text="Data:"
+                               TextColor="White"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               Grid.Row="5"
+                               Grid.ColumnSpan="2"
+                               Grid.Column="1" />
+                        <Label Text="{Binding CollectionStat}"
+                               x:Name="lblDBStat"
+                               TextColor="White"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               Grid.Row="5"
+                               Grid.ColumnSpan="3"
+                               Grid.Column="3" />
+                        <!--ADD BINDING STEP-->
+
+                    </Grid>
+
+                </cardView:CardView.CardViewContent>
+
+
+            </cardView:CardView>
+
+            <!--TOP PORTION END-->
+
+
+            <!--MID PORTION START-->
+
+            <RelativeLayout BackgroundColor="#A7AFB2"
+                            x:Name="mid_layout"
+                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=main_card, Property=Y, Constant=250}"
+                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1}">
+
+                <Label Text="Smart Phone Live Stream"
+                       TextColor="Black"
+                       FontFamily="Roboto"
+                       FontAttributes="Bold"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=mid_card, Property=X,Factor=1,Constant=40}"
+                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=mid_card, Property=Y,Factor=1,Constant=0}" />
+
+
+                <cardView:CardView x:Name="mid_card"
+                                   Padding="30"
+                                   CardViewHeightRequest="1000"
+                                   CardViewOutlineColor="White"
+                                   CardViewInnerFrameOutlineColorThickness="2"
+                                   CardViewHasShadow="True"
+                                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Y,Factor=0}"
+                                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=1}">
+
+                    <cardView:CardView.CardViewContent>
+
+                        <Grid Padding="10"
+                              HorizontalOptions="CenterAndExpand">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="3*" />
+                                <RowDefinition Height="20" />
+
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="3*" />
+                                <RowDefinition Height="20" />
+
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="3*" />
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
+
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="Accelerometer"
+                                   Grid.Row="0"
+                                   Grid.Column="0"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center" />
+                            <Label Text="Magnetic Field"
+                                   Grid.Row="3"
+                                   Grid.Column="0"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center" />
+                            <Label Text="Gyroscope"
+                                   Grid.Row="6"
+                                   Grid.Column="0"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center" />
+
+                            <!--ACCELEROMETER-->
+
+                            <chart:SfChart VerticalOptions="FillAndExpand"
+                                           x:Name="accel_chart"
+                                           Grid.Row="1"
+                                           Grid.ColumnSpan="4">
+
+                                <chart:SfChart.PrimaryAxis>
+                                    <chart:NumericalAxis Interval="10"
+                                                         IsVisible="False"
+                                                         EdgeLabelsDrawingMode="Shift">
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.PrimaryAxis>
+
+                                <chart:SfChart.SecondaryAxis>
+                                    <chart:NumericalAxis IsVisible="True">
+                                        <chart:NumericalAxis.Title>
+                                            <chart:ChartAxisTitle />
+                                        </chart:NumericalAxis.Title>
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.SecondaryAxis>
+
+                                <chart:SfChart.Legend>
+
+                                    <chart:ChartLegend IsVisible="True" />
+
+                                </chart:SfChart.Legend>
+
+                                <chart:SfChart.Series>
+                                    <chart:FastLineSeries XBindingPath="AccelerationTime"
+                                                          YBindingPath="XAccelerationValue"
+                                                          ItemsSource="{Binding AccelerationValues}"
+                                                          Label="X"
+                                                          LegendIcon="SeriesType" />
+                                    <chart:FastLineSeries XBindingPath="AccelerationTime"
+                                                          YBindingPath="YAccelerationValue"
+                                                          ItemsSource="{Binding AccelerationValues}"
+                                                          Label="Y"
+                                                          LegendIcon="SeriesType" />
+                                    <chart:FastLineSeries XBindingPath="AccelerationTime"
+                                                          YBindingPath="ZAccelerationValue"
+                                                          ItemsSource="{Binding AccelerationValues}"
+                                                          Label="Z"
+                                                          LegendIcon="SeriesType" />
+                                </chart:SfChart.Series>
+
+                            </chart:SfChart>
+
+
+
+                            <!--MAGNETOMETER-->
+                            <chart:SfChart VerticalOptions="FillAndExpand"
+                                           x:Name="mag_chart"
+                                           Grid.Row="4"
+                                           Grid.ColumnSpan="4">
+
+                                <chart:SfChart.PrimaryAxis>
+                                    <chart:NumericalAxis Interval="10"
+                                                         IsVisible="False"
+                                                         EdgeLabelsDrawingMode="Shift">
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.PrimaryAxis>
+
+                                <chart:SfChart.SecondaryAxis>
+                                    <chart:NumericalAxis>
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.SecondaryAxis>
+
+                                <chart:SfChart.Legend>
+
+                                    <chart:ChartLegend IsVisible="True" />
+
+                                </chart:SfChart.Legend>
+
+                                <chart:SfChart.Series>
+                                    <chart:FastLineSeries XBindingPath="MagnetometerTime"
+                                                          YBindingPath="XMagnetometerValue"
+                                                          ItemsSource="{Binding MagnetometerValues}"
+                                                          Label="X"
+                                                          LegendIcon="SeriesType" />
+                                    <chart:FastLineSeries XBindingPath="MagnetometerTime"
+                                                          YBindingPath="YMagnetometerValue"
+                                                          ItemsSource="{Binding MagnetometerValues}"
+                                                          Label="Y"
+                                                          LegendIcon="SeriesType" />
+                                    <chart:FastLineSeries XBindingPath="MagnetometerTime"
+                                                          YBindingPath="ZMagnetometerValue"
+                                                          ItemsSource="{Binding MagnetometerValues}"
+                                                          Label="Z"
+                                                          LegendIcon="SeriesType" />
+                                </chart:SfChart.Series>
+
+                            </chart:SfChart>
+
+
+                            <Image Source="ic_health.png"
+                                   Grid.Row="9"
+                                   Grid.Column="0"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center" />
+
+
+                            <!--GYROSCOPE-->
+                            <chart:SfChart VerticalOptions="FillAndExpand"
+                                           x:Name="Gyro_chart"
+                                           Grid.Row="7"
+                                           Grid.ColumnSpan="4">
+
+                                <chart:SfChart.PrimaryAxis>
+                                    <chart:NumericalAxis Interval="10"
+                                                         IsVisible="False"
+                                                         EdgeLabelsDrawingMode="Shift">
+                                        <chart:NumericalAxis.Title>
+                                            <chart:ChartAxisTitle Text="Time(S)" />
+                                        </chart:NumericalAxis.Title>
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.PrimaryAxis>
+
+                                <chart:SfChart.SecondaryAxis>
+                                    <chart:NumericalAxis>
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.SecondaryAxis>
+
+                                <chart:SfChart.Legend>
+
+                                    <chart:ChartLegend IsVisible="True" />
+
+                                </chart:SfChart.Legend>
+
+                                <chart:SfChart.Series>
+                                    <chart:FastLineSeries XBindingPath="GyroscopeTime"
+                                                          YBindingPath="XGyroscopeValue"
+                                                          ItemsSource="{Binding GyroscopeValues}"
+                                                          Label="X"
+                                                          LegendIcon="SeriesType" />
+                                    <chart:FastLineSeries XBindingPath="GyroscopeTime"
+                                                          YBindingPath="YGyroscopeValue"
+                                                          ItemsSource="{Binding GyroscopeValues}"
+                                                          Label="Y"
+                                                          LegendIcon="SeriesType" />
+                                    <chart:FastLineSeries XBindingPath="GyroscopeTime"
+                                                          YBindingPath="ZGyroscopeValue"
+                                                          ItemsSource="{Binding GyroscopeValues}"
+                                                          Label="Z"
+                                                          LegendIcon="SeriesType" />
+                                </chart:SfChart.Series>
+
+                            </chart:SfChart>
+
+
+                        </Grid>
+
+
+                    </cardView:CardView.CardViewContent>
+
+
+                </cardView:CardView>
+
+                <!--MID PORTION END-->
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <!--MAIN RELATIVE LAYOUT END-->
+
+    </ScrollView>
+
+</ContentPage>

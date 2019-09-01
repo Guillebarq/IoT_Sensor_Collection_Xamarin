@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             xmlns:cardView="clr-namespace:CardView;assembly=CardView"
+             x:Class="FIUAssist.Views.SmartWatchPage"
+             Title="Watch"
+             Icon="watch_icon.ico">
+
+    <ScrollView>
+
+            <!--SMART WATCH PORTION-->
+
+            <RelativeLayout BackgroundColor="#E5E5E5">
+
+
+                <Label Text="Smart Watch Live Stream"
+                       TextColor="Black"
+                       FontFamily="Roboto"
+                       FontAttributes="Bold"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=mid_card_watch, Property=X,Factor=1,Constant=40}"
+                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=mid_card_watch, Property=Y,Factor=1,Constant=0}" />
+
+
+                <cardView:CardView x:Name="mid_card_watch"
+                                   Padding="30"
+                                   CardViewHeightRequest="1500"
+                                   CardViewOutlineColor="White"
+                                   CardViewInnerFrameOutlineColorThickness="2"
+                                   CardViewHasShadow="True"
+                                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=1, Constant=80}"
+                                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
+
+                    <cardView:CardView.CardViewContent>
+
+                        <Grid Padding="10"
+                              HorizontalOptions="CenterAndExpand">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="3*" />
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="3*" />
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="3*" />
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="3*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="20" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
+
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="Heart Rate"
+                                   Grid.Row="0"
+                                   Grid.Column="0"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center" />
+                            <Label Text="Accelerometer"
+                                   Grid.Row="3"
+                                   Grid.Column="0"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center" />
+                            <Label Text="Magnetic Field"
+                                   Grid.Row="6"
+                                   Grid.Column="0"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center" />
+                            <Label Text="Gyroscope"
+                                   Grid.Row="9"
+                                   Grid.Column="0"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center" />
+
+
+                            <chart:SfChart VerticalOptions="FillAndExpand"
+                                           x:Name="heartRate_chart_watch"
+                                           Grid.Row="1"
+                                           Grid.ColumnSpan="2">
+
+                                <chart:SfChart.PrimaryAxis>
+                                    <chart:NumericalAxis  IsVisible="False"
+                                                          EdgeLabelsDrawingMode="Shift">
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.PrimaryAxis>
+
+                                <chart:SfChart.SecondaryAxis>
+                                    <chart:NumericalAxis Interval="1"
+                                                         IsVisible="True">
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.SecondaryAxis>
+
+                                <chart:SfChart.Legend>
+
+                                    <chart:ChartLegend IsVisible="True" />
+
+                                </chart:SfChart.Legend>
+
+                                <chart:SfChart.Series>
+                                    <chart:LineSeries XBindingPath="HeartRateTime"
+                                                      YBindingPath="HeartRate"
+                                                      ItemsSource="{Binding HeartRateValues}"
+                                                      Label="BPM"
+                                                      LegendIcon="SeriesType" />
+                                </chart:SfChart.Series>
+
+
+                            </chart:SfChart>
+
+
+                            <!--ACCELEROMETER-->
+
+
+                            <chart:SfChart VerticalOptions="FillAndExpand"
+                                           x:Name="accel_chart_watch"
+                                           Grid.Row="4"
+                                           Grid.ColumnSpan="4">
+
+                                <chart:SfChart.PrimaryAxis>
+                                    <chart:NumericalAxis Interval="10"
+                                                         IsVisible="False"
+                                                         EdgeLabelsDrawingMode="Shift">
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.PrimaryAxis>
+
+                                <chart:SfChart.SecondaryAxis>
+                                    <chart:NumericalAxis IsVisible="True">
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.SecondaryAxis>
+
+                                <chart:SfChart.Legend>
+
+                                    <chart:ChartLegend IsVisible="True" />
+
+                                </chart:SfChart.Legend>
+
+                                <chart:SfChart.Series>
+                                    <chart:LineSeries XBindingPath="AccelerationTime"
+                                                      YBindingPath="XAccelerationValue"
+                                                      ItemsSource="{Binding WatchAccelerationValues}"
+                                                      Label="X"
+                                                      LegendIcon="SeriesType" />
+                                    <chart:LineSeries XBindingPath="AccelerationTime"
+                                                      YBindingPath="YAccelerationValue"
+                                                      ItemsSource="{Binding WatchAccelerationValues}"
+                                                      Label="Y"
+                                                      LegendIcon="SeriesType" />
+                                    <chart:LineSeries XBindingPath="AccelerationTime"
+                                                      YBindingPath="ZAccelerationValue"
+                                                      ItemsSource="{Binding WatchAccelerationValues}"
+                                                      Label="Z"
+                                                      LegendIcon="SeriesType" />
+                                </chart:SfChart.Series>
+
+                            </chart:SfChart>
+
+
+
+                            <!--MAGNETOMETER-->
+
+                            <chart:SfChart VerticalOptions="FillAndExpand"
+                                           x:Name="mag_chart_watch"
+                                           Grid.Row="7"
+                                           Grid.ColumnSpan="4">
+
+                                <chart:SfChart.PrimaryAxis>
+                                    <chart:NumericalAxis Interval="10"
+                                                         IsVisible="False"
+                                                         EdgeLabelsDrawingMode="Shift">
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.PrimaryAxis>
+
+                                <chart:SfChart.SecondaryAxis>
+                                    <chart:NumericalAxis>
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.SecondaryAxis>
+
+                                <chart:SfChart.Legend>
+
+                                    <chart:ChartLegend IsVisible="True" />
+
+                                </chart:SfChart.Legend>
+
+                                <chart:SfChart.Series>
+                                    <chart:LineSeries XBindingPath="MagnetometerTime"
+                                                      YBindingPath="XMagnetometerValue"
+                                                      ItemsSource="{Binding WatchMagnetometerValues}"
+                                                      Label="X"
+                                                      LegendIcon="SeriesType" />
+                                    <chart:LineSeries XBindingPath="MagnetometerTime"
+                                                      YBindingPath="YMagnetometerValue"
+                                                      ItemsSource="{Binding WatchMagnetometerValues}"
+                                                      Label="Y"
+                                                      LegendIcon="SeriesType" />
+                                    <chart:LineSeries XBindingPath="MagnetometerTime"
+                                                      YBindingPath="ZMagnetometerValue"
+                                                      ItemsSource="{Binding WatchMagnetometerValues}"
+                                                      Label="Z"
+                                                      LegendIcon="SeriesType" />
+                                </chart:SfChart.Series>
+
+                            </chart:SfChart>
+
+
+                            <Image Source="ic_health.png"
+                                   Grid.Row="11"
+                                   Grid.Column="0"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center" />
+
+
+
+                            <!--GYROSCOPE-->
+
+                            <chart:SfChart VerticalOptions="FillAndExpand"
+                                           x:Name="Gyro_chart_watch"
+                                           Grid.Row="10"
+                                           Grid.ColumnSpan="4">
+
+                                <chart:SfChart.PrimaryAxis>
+                                    <chart:NumericalAxis Interval="10"
+                                                         IsVisible="False"
+                                                         EdgeLabelsDrawingMode="Shift">
+                                        <chart:NumericalAxis.Title>
+                                            <chart:ChartAxisTitle Text="Time(S)" />
+                                        </chart:NumericalAxis.Title>
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.PrimaryAxis>
+
+                                <chart:SfChart.SecondaryAxis>
+                                    <chart:NumericalAxis>
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.SecondaryAxis>
+
+                                <chart:SfChart.Legend>
+
+                                    <chart:ChartLegend IsVisible="True" />
+
+                                </chart:SfChart.Legend>
+
+                                <chart:SfChart.Series>
+                                    <chart:LineSeries XBindingPath="GyroscopeTime"
+                                                      YBindingPath="XGyroscopeValue"
+                                                      ItemsSource="{Binding WatchGyroscopeValues}"
+                                                      Label="X"
+                                                      LegendIcon="SeriesType" />
+                                    <chart:LineSeries XBindingPath="GyroscopeTime"
+                                                      YBindingPath="YGyroscopeValue"
+                                                      ItemsSource="{Binding WatchGyroscopeValues}"
+                                                      Label="Y"
+                                                      LegendIcon="SeriesType" />
+                                    <chart:LineSeries XBindingPath="GyroscopeTime"
+                                                      YBindingPath="ZGyroscopeValue"
+                                                      ItemsSource="{Binding WatchGyroscopeValues}"
+                                                      Label="Z"
+                                                      LegendIcon="SeriesType" />
+                                </chart:SfChart.Series>
+
+                            </chart:SfChart>
+
+                        </Grid>
+
+                    </cardView:CardView.CardViewContent>
+
+                </cardView:CardView>
+
+            </RelativeLayout>
+
+        </ScrollView>
+
+</ContentPage>

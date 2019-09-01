@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cardView="clr-namespace:CardView;assembly=CardView"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             Title="Wound"
+             Icon="wound_icon.ico"
+             x:Class="FIUAssist.Views.WoundPage">
+
+    <ScrollView>
+
+        <!--MID PORTION START-->
+
+        <RelativeLayout BackgroundColor="#A7AFB2">
+
+            <Label Text="Wound Stats"
+                   TextColor="Black"
+                   FontFamily="Roboto"
+                   FontSize="36"
+                   FontAttributes="Bold"
+                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=20}"
+                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=20}"
+                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" />
+
+
+            <cardView:CardView x:Name="wound_card"
+                               Padding="20"
+                               CardViewHeightRequest="150"
+                               CardViewOutlineColor="Black"
+                               CardViewInnerFrameOutlineColorThickness="2"
+                               CardViewHasShadow="True"
+                               CardViewHorizontalOptions="Fill"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=1, Constant=50}"
+                               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
+                <cardView:CardView.CardViewContent>
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <!--GRID CONTENT -->
+                        <Label Text="{Binding Channel, StringFormat='Current Channel: {0}'}"
+                               Grid.Row="0"
+                               Grid.ColumnSpan="3"
+                               FontAttributes="Bold"
+                               TextColor="White" />
+                        <Label Text="{Binding Bias, StringFormat='Bias: {0:F1}'}"
+                               Grid.Row="0"
+                               Grid.Column="2"
+                               FontAttributes="Bold"
+                               TextColor="White" />
+                        <Image Source="lmpoutput.png"
+                               Grid.Row="1"
+                               Grid.Column="0"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                        <Label Text="{Binding Lmpout, StringFormat='{0:F3}v'}"
+                               Grid.Row="2"
+                               Grid.Column="0"
+                               FontAttributes="Bold"
+                               TextColor="White"
+                               HorizontalOptions="Center" />
+
+                        <Image Source="temp.png"
+                               Grid.Row="1"
+                               Grid.Column="1"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                        <Label Text="{Binding Temperature, StringFormat='{0:N}°C'}"
+                               Grid.Row="2"
+                               Grid.Column="1"
+                               HorizontalOptions="Center"
+                               FontAttributes="Bold"
+                               TextColor="White" />
+
+                        <Image Source="battery_voltage.png"
+                               Grid.Row="1"
+                               Grid.Column="2"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                        <Label Text="{Binding BatteryVoltage, StringFormat='{0:N}v'}"
+                               Grid.Row="2"
+                               Grid.Column="2"
+                               FontAttributes="Bold"
+                               TextColor="White"
+                               HorizontalOptions="Center" />
+
+                        <!--ENDCONTENT-->
+                    </Grid>
+                </cardView:CardView.CardViewContent>
+            </cardView:CardView>
+
+            <RelativeLayout BackgroundColor="#A7AFB2"
+                            x:Name="mid_layout_wound"
+                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=wound_card, Property=Y, Constant=200}"
+                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1}">
+
+                <Label Text="Wound Sensor Live Stream"
+                       TextColor="Black"
+                       FontFamily="Roboto"
+                       FontAttributes="Bold"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=mid_card_wound, Property=X,Factor=1,Constant=40}"
+                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=mid_card_wound, Property=Y,Factor=1,Constant=0}" />
+
+
+
+                <cardView:CardView x:Name="mid_card_wound"
+                                   Padding="30"
+                                   CardViewHeightRequest="2000"
+                                   CardViewOutlineColor="White"
+                                   CardViewInnerFrameOutlineColorThickness="2"
+                                   CardViewHasShadow="True"
+                                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0}"
+                                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
+
+                    <cardView:CardView.CardViewContent>
+
+                        <Grid Padding="10"
+                              HorizontalOptions="CenterAndExpand">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <!--0-->
+                                <RowDefinition Height="20" />
+                                <!--1-->
+
+                                <RowDefinition Height="auto" />
+                                <!--2-->
+                                <RowDefinition Height="3*" />
+                                <!--3-->
+                                <RowDefinition Height="20" />
+                                <!--4-->
+
+                                <RowDefinition Height="auto" />
+                                <!--5-->
+                                <RowDefinition Height="3*" />
+                                <!--6-->
+                                <RowDefinition Height="20" />
+                                <!--7-->
+
+                                <RowDefinition Height="auto" />
+                                <!--8-->
+                                <RowDefinition Height="3*" />
+                                <!--9-->
+                                <RowDefinition Height="20" />
+                                <!--10-->
+
+                                <RowDefinition Height="auto" />
+                                <!--11-->
+                                <RowDefinition Height="3*" />
+                                <!--12-->
+                                <RowDefinition Height="20" />
+                                <!--13-->
+
+                                <RowDefinition Height="*" />
+                                <!--14-->
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
+
+                            </Grid.ColumnDefinitions>
+
+                            <!--<Label x:Name="tempLabel" Text="Temperature" Grid.Row="0" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                -->
+                            <Label Text="Channel 1"
+                                   Grid.Row="1"
+                                   Grid.Column="0"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center" />
+                            <Label Text="Channel 2"
+                                   Grid.Row="4"
+                                   Grid.Column="0"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center" />
+                            <Label Text="Channel 3"
+                                   Grid.Row="7"
+                                   Grid.Column="0"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center" />
+                            <Label Text="Channel 4"
+                                   Grid.Row="10"
+                                   Grid.Column="0"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center" />
+
+                            <chart:SfChart VerticalOptions="FillAndExpand"
+                                           x:Name="wound1_chart_watch"
+                                           Grid.Row="3"
+                                           Grid.ColumnSpan="4">
+
+                                <chart:SfChart.PrimaryAxis>
+                                    <chart:NumericalAxis Interval="10"
+                                                         IsVisible="False"
+                                                         EdgeLabelsDrawingMode="Shift">
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.PrimaryAxis>
+
+                                <chart:SfChart.SecondaryAxis>
+                                    <chart:NumericalAxis IsVisible="True">
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.SecondaryAxis>
+
+                                <chart:SfChart.Legend>
+                                    <chart:ChartLegend IsVisible="True" />
+                                </chart:SfChart.Legend>
+
+                                <chart:SfChart.Series>
+                                    <chart:FastLineSeries XBindingPath="LmpoutputTime"
+                                                      YBindingPath="Lmpoutput"
+                                                      ItemsSource="{Binding WoundLmpoutputValues1}"
+                                                      Label="PH Value"
+                                                      LegendIcon="SeriesType" />
+                                </chart:SfChart.Series>
+
+                            </chart:SfChart>
+
+
+                            <chart:SfChart VerticalOptions="FillAndExpand"
+                                           x:Name="wound2_chart_watch"
+                                           Grid.Row="6"
+                                           Grid.ColumnSpan="4">
+
+                                <chart:SfChart.PrimaryAxis>
+                                    <chart:NumericalAxis Interval="10"
+                                                         IsVisible="False"
+                                                         EdgeLabelsDrawingMode="Shift">
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.PrimaryAxis>
+
+                                <chart:SfChart.SecondaryAxis>
+                                    <chart:NumericalAxis  IsVisible="True">
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.SecondaryAxis>
+
+                                <chart:SfChart.Legend>
+
+                                    <chart:ChartLegend IsVisible="True" />
+
+                                </chart:SfChart.Legend>
+
+                                <chart:SfChart.Series>
+                                    <chart:FastLineSeries XBindingPath="LmpoutputTime"
+                                                      YBindingPath="Lmpoutput"
+                                                      ItemsSource="{Binding WoundLmpoutputValues2}"
+                                                      Label="PH Value"
+                                                      LegendIcon="SeriesType" />
+                                </chart:SfChart.Series>
+
+                            </chart:SfChart>
+
+
+                            <Image Source="ic_health.png"
+                                   Grid.Row="14"
+                                   Grid.Column="0"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center" />
+
+
+                            <chart:SfChart VerticalOptions="FillAndExpand"
+                                           x:Name="wound3_chart_watch"
+                                           Grid.Row="9"
+                                           Grid.ColumnSpan="4">
+
+                                <chart:SfChart.PrimaryAxis>
+                                    <chart:NumericalAxis Interval="10"
+                                                         IsVisible="False"
+                                                         EdgeLabelsDrawingMode="Shift">
+                                        <chart:NumericalAxis.Title>
+                                            <chart:ChartAxisTitle Text="Time(S)" />
+                                        </chart:NumericalAxis.Title>
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.PrimaryAxis>
+
+                                <chart:SfChart.SecondaryAxis>
+                                    <chart:NumericalAxis IsVisible="True">
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.SecondaryAxis>
+
+                                <chart:SfChart.Legend>
+
+                                    <chart:ChartLegend IsVisible="True" />
+
+                                </chart:SfChart.Legend>
+
+                                <chart:SfChart.Series>
+                                    <chart:FastLineSeries XBindingPath="LmpoutputTime"
+                                                      YBindingPath="Lmpoutput"
+                                                      ItemsSource="{Binding WoundLmpoutputValues3}"
+                                                      Label="PH Value"
+                                                      LegendIcon="SeriesType" />
+                                </chart:SfChart.Series>
+
+                            </chart:SfChart>
+
+
+                            <chart:SfChart VerticalOptions="FillAndExpand"
+                                           x:Name="wound4_chart_watch"
+                                           Grid.Row="12"
+                                           Grid.ColumnSpan="4">
+
+                                <chart:SfChart.PrimaryAxis>
+                                    <chart:NumericalAxis Interval="10"
+                                                         IsVisible="False"
+                                                         EdgeLabelsDrawingMode="Shift">
+                                        <chart:NumericalAxis.Title>
+                                            <chart:ChartAxisTitle Text="Time(S)" />
+                                        </chart:NumericalAxis.Title>
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.PrimaryAxis>
+
+                                <chart:SfChart.SecondaryAxis>
+                                    <chart:NumericalAxis IsVisible="True">
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.SecondaryAxis>
+
+                                <chart:SfChart.Legend>
+
+                                    <chart:ChartLegend IsVisible="True" />
+
+                                </chart:SfChart.Legend>
+
+                                <chart:SfChart.Series>
+                                    <chart:FastLineSeries XBindingPath="LmpoutputTime"
+                                                      YBindingPath="Lmpoutput"
+                                                      ItemsSource="{Binding WoundLmpoutputValues4}"
+                                                      Label="PH Value"
+                                                      LegendIcon="SeriesType" />
+                                </chart:SfChart.Series>
+
+                            </chart:SfChart>
+
+
+                        </Grid>
+
+                    </cardView:CardView.CardViewContent>
+
+                </cardView:CardView>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+</ContentPage>
