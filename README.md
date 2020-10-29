@@ -9,10 +9,13 @@ This application is a cross-platform sensor collection application that connects
 #  Application Images
 
 ## Main Page
-![](images/main_page.png)
+<img src="images/main_page.png" width=50% height=50%/>
 
 ## Wound Sensor Page
-![](images/wound_page.png)
+<img src="images/wound_page.png" width=50% height=50%/>
 
 ## Data Visualization
-![](images/data_collection.png)
+<img src="images/data_collection.png" width=50% height=50%/>
+
+## Smart Watch Connected
+<img src="images/IMG_20190807_140448.jpg" width=50% height=50%/>
