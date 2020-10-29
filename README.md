@@ -5,3 +5,14 @@ This application is a cross-platform sensor collection application that connects
 - C#/Xamarin
 - XAML
 - Microsoft Azure Database
+
+#  Application Images
+
+## Main Page
+![](images/main_page.png)
+
+## Wound Sensor Page
+![](images/wound_page.png)
+
+## Data Visualization
+![](images/data_collection.png)
